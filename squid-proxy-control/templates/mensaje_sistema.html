@@ -1,0 +1,40 @@
+$def with (data)
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="refresh" content="$data[3]; URL=$data[2]">
+	<meta name="keywords" content="redireccion automatica">
+	<title>Control de acceso a internet</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8; encoding=utf-8"/>
+	<link href="/static/css/all.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="page">
+    <div id="header" class="noindex"><h1><a href='/'><img src='/static/img/logo.gif' width='760' height='33' alt='ACP' /></a></h1></div>
+    <div class="noindex" id="nav"><ul><li ><a href='/' >&nbsp;</a></li></ul></div>
+    <div class="noindex" id="subnav"><ul><li><a href='/'>&nbsp;</a></li></ul></div>
+    <div id="fullcontent">
+        <table width=*>
+        <tr><td width="50"></td><td></td><td><br/></td><td width="50"></td></tr>
+        <tr><td width="50"></td>
+$if data[0] == "Denied":
+    <td><img src="/static/img/icons/denied.png" alt="denegado" />
+$elif data[0] == "Error":
+    <td><img src="/static/img/icons/cross.png" alt="error" />
+$elif data[0] == "OK":
+    <td><img src="/static/img/icons/ok.png" alt="ok" />
+$elif data[0] == "atencion":
+    <td><img src="/static/img/icons/exclamation.png" alt="atención" />
+$else:
+    <td><img src="/static/img/icons/exclamation.png" alt="atención" />
+</td><td>$data[1]</td><td width="50"></td></tr>
+        <tr><td width="50"></td><td></td><td><br/></td><td width="50"></td></tr>
+        </table>
+    </div>
+
+    <div id="footer">
+        Departamento de Informatica y Tecnologia
+    </div>
+</div>
+</body>
+</html>

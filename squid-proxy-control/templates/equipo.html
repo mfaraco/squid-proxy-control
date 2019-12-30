@@ -1,0 +1,69 @@
+$def with (pagina, equipo)
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Grupo de Equipos</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link href="/static/css/all.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="page">
+$:pagina['header']
+$:pagina['menues']
+<div id="fullcontent">
+<table style="table-layout:fixed;">
+    <tr><td style="width:5%"></td><td style="width:90%"></td><td style="width:5%"></td></tr>
+	<tr>
+		<td></td>
+		<td>
+			<table>
+			    <tr>
+				    <td style="width:75%;">
+				    <table>
+					    <tr><td style="width:120px;">Puesto asignado:</td><td>$equipo.puesto</td></tr>
+					    <tr><td>Dirección IP:</td><td>$equipo.IP</td></tr>
+						<tr><td>MAC Address:</td><td>$equipo.MAC</td></tr>
+				    </table>
+				    </td>
+				    
+				    <td style="width:25%; text-align:center;">
+				    <table>
+					    <tr>
+					    <td>
+$if equipo.acceso == 1: 
+    <a href="/equipo/$equipo.IP"><img src="/static/img/web_on.png" title="Acceso Full" alt="Acceso Full" /></a>
+$elif equipo.acceso == 2:
+    <a href="/equipo/$equipo.IP"><img src="/static/img/web_acp.png" title="Sólo Sitios Autorizados" alt="Sólo Sitios Autorizados"/></a>
+$elif equipo.acceso == 3:
+    <a href="/equipo/$equipo.IP"><img src="/static/img/web_off.png" title="Sin Internet" alt="Sin Internet"/></a>
+</td> 
+						</tr>
+					   	<tr>
+					   	<td>
+					   		<table >
+					        	<tr>
+								     <td>
+							        	<a href="/equipo/$equipo.IP/1"><img style="height:20px; width:20px;" src="/static/img/web_on.png" title="Haga click para cambiar a: Acceso Full" alt="Acceso Full" /></a>
+							        </td>
+							         <td>
+							        	<a href="/equipo/$equipo.IP/2"><img style="height:20px; width:20px;" src="/static/img/web_acp.png" title="Haga click para cambiar a: Sólo Sitios Autorizados" alt="Sólo Sitios Autorizados"/></a>
+							        </td>
+							         <td>
+							        	<a href="/equipo/$equipo.IP/3"><img style="height:20px; width:20px;" src="/static/img/web_off.png" title="Haga click para cambiar a: Sin Internet" alt="Sin Internet"/></a>
+							        </td>
+								</tr>
+							</table>
+					   	</td>
+						</tr>
+					</table>
+					</td>
+				</tr>
+			</table>
+	    </td>
+	</tr>        
+</table>
+</div>
+$:pagina['footer']
+</div>
+</body>
+</html>

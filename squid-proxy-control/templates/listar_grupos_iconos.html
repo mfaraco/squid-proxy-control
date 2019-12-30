@@ -1,0 +1,71 @@
+$def with (pagina, elementos, grupo)
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Grupo de Equipos</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link href="/static/css/all.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="page">
+$:pagina['header']
+$:pagina['menues']
+<div id="fullcontent">
+<table style="table-layout:fixed;">
+    <tr><td style="width:5%"></td><td style="width:90%"></td><td style="width:5%"></td></tr>
+    <tr>
+    	<td></td>
+    	<td>
+	    	<table>
+		    	<tr>
+			        <th style="width:80%; text-align:left;">
+				        $grupo['descripcion']
+				     </th>
+				     <td>
+			        	<a href="/grupo/$grupo['id']/1"><img style="height:20px; width:20px;" src="/static/img/web_on.png" title="Haga click para cambiar a: Acceso Full" alt="Acceso Full" /></a>
+			        </td>
+			         <td>
+			        	<a href="/grupo/$grupo['id']/2"><img style="height:20px; width:20px;" src="/static/img/web_acp.png" title="Haga click para cambiar a: Sólo Sitios Autorizados" alt="Sólo Sitios Autorizados"/></a>
+			        </td>
+			         <td>
+			        	<a href="/grupo/$grupo['id']/3"><img style="height:20px; width:20px;" src="/static/img/web_off.png" title="Haga click para cambiar a: Sin Internet" alt="Sin Internet"/></a>
+			        </td>
+				</tr>
+	        </table>
+        </td>
+        <td></td>
+    </tr>
+    <tr><td></td><td><hr/></td></tr>
+<tr><td></td><td>
+<table>
+$ columna = 1
+$for elem in elementos:
+    $if columna == 1:
+        <tr>
+    <td style="width:25%; text-align:center;">
+ 	$if elem.acceso == 1: 
+	    <a href="/equipo/$elem.IP"><img src="/static/img/web_on.png" title="Acceso Full" alt="Acceso Full" /></a>
+	$elif elem.acceso == 2:
+	    <a href="/equipo/$elem.IP"><img src="/static/img/web_acp.png" title="Sólo Sitios Autorizados" alt="Sólo Sitios Autorizados"/></a>
+	$elif elem.acceso == 3:
+	    <a href="/equipo/$elem.IP"><img src="/static/img/web_off.png" title="Sin Internet" alt="Sin Internet"/></a>
+	<br/>
+	<span style="font-weight:bold;" <a href="/equipo/$elem.IP">$elem.puesto</a></span><br/>
+    <a href="/equipo/$elem.IP">$elem.IP</a><br/>
+    <a href="/equipo/$elem.IP">$elem.MAC</a><br/>
+    <br/>
+    </td>
+    $if columna == 4:
+        </tr>
+        $ columna = 1
+    $else:
+        $ columna += 1
+$if columna != 1:
+    </tr>        
+</table></td><td></td></tr>
+</table>
+</div>
+$:pagina['footer']
+</div>
+</body>
+</html>

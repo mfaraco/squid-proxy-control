@@ -1,0 +1,27 @@
+$def with (pagina, action, items)
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Acceso a Internet - Grupos</title>
+	<meta http-equiv="Content-Type" content="text/html;"/>
+	<link href="/static/css/all.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="page">
+$:pagina['header']
+$:pagina['menues']
+    <div id="fullcontent">
+        <form action="$action" method="post">
+            <div>
+                <select name="grupo" style="width: 450px;" >
+$for i in items:
+    <option value="$i.id">$i.descripcion</option> 
+</select>
+                <input class="button" type="submit" value="item" />
+            </div>         
+        </form>
+    </div>
+$:pagina['footer']
+</div>
+</body>
+</html>

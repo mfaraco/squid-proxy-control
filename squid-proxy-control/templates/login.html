@@ -1,0 +1,35 @@
+$def with (pagina, error_password, grupos)
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Control de acceso a Internet</title>
+	<link href="/static/css/all.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="page">
+$:pagina['header']
+$:pagina['menues']
+<div id="fullcontent">
+    <h3>Por favor ingrese su usuario y contrase&ntilde;a</h3>
+        <form action="login" method="post" enctype="multipart/form-data">
+            <table style="table-layout:fixed;">
+                <tr><td style="width:150px;"></td><td></td></tr>
+                <tr><td>Usuario : </td><td><input class="biginput" type="text" name="username"/></td></tr>
+                <tr><td>Contrase&ntilde;a :  </td><td><input class="biginput" type="password" name="password"/></td></tr>
+                <tr><td>Grupo de Equipos :  </td>
+                    <td><select name="grupo">
+$for grupo in grupos:
+    <option value="$grupo.id">$grupo.descripcion</option> 
+<option value="0">Ninguno</option>
+						</select>
+					</td></tr>
+                <tr><td><input class="button" type="submit" value="Login"/></td></tr>
+            </table>
+        </form>
+$if error_password:
+    <p style="text-decoration:blink; color:#FF0000;">Por favor verifique el usuario y la contrase&ntilde;a</p>
+</div>
+$:pagina['footer']
+</div>
+</body>
+</html>
